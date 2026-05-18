@@ -3,7 +3,6 @@ import { dynamo } from '../lib/dynamodb';
 import { ScanCommand } from '@aws-sdk/lib-dynamodb';
 import { ok, internalError } from '../lib/response';
 
-// 1. Quitamos el "export" directo de aquí
 const listAllProductsHandler = async (event: any) => {
     try {
         const result = await dynamo.send(new ScanCommand({
@@ -15,5 +14,4 @@ const listAllProductsHandler = async (event: any) => {
     }
 };
 
-// 2. Exportamos la función envuelta con CORS usando el nombre que espera serverless.yml
 export const listAllProducts = withCors(listAllProductsHandler);

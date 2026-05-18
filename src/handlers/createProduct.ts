@@ -1,11 +1,9 @@
-// 1. Importamos la función withCors
 import { withCors } from '../common/cors';
 import * as crypto from 'crypto';
 import { dynamo } from '../lib/dynamodb';
 import { PutCommand } from '@aws-sdk/lib-dynamodb';
 import { badRequest, forbidden, created, internalError } from '../lib/response';
 
-// 2. Quitamos el export y renombramos la función
 const createProductHandler = async (event: any) => {
     try {
         const callerRole = event.requestContext?.authorizer?.role;
@@ -54,5 +52,4 @@ const createProductHandler = async (event: any) => {
     }
 };
 
-// 3. Exportamos la función envuelta con CORS
 export const createProduct = withCors(createProductHandler);
